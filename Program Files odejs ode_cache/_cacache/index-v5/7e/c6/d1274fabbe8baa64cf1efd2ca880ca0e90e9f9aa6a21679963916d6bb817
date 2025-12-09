@@ -1,0 +1,2 @@
+
+210b345977868d7c1c8f4b28625c8684205e59a3	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/strip-final-newline","integrity":null,"time":1765263120733,"size":"262","metadata":{"time":1765263120733,"url":"http://registry.npmmirror.com/strip-final-newline","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:54 GMT","location":"https://registry.npmmirror.com/strip-final-newline"},"options":{"compress":true},"status":301}}

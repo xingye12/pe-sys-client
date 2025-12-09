@@ -1,0 +1,2 @@
+
+2836f1328ef795afd18eb021a027e325345648f7	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/unicorn-magic","integrity":null,"time":1765263121516,"size":"262","metadata":{"time":1765263121516,"url":"http://registry.npmmirror.com/unicorn-magic","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:55 GMT","location":"https://registry.npmmirror.com/unicorn-magic"},"options":{"compress":true},"status":301}}

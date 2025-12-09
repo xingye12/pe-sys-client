@@ -1,0 +1,2 @@
+
+e4b9b5fea1d557fcb51723f317f7fe4d5b433289	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@antfu%2futils","integrity":null,"time":1765263120910,"size":"262","metadata":{"time":1765263120910,"url":"http://registry.npmmirror.com/@antfu%2futils","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:54 GMT","location":"https://registry.npmmirror.com/@antfu%2futils"},"options":{"compress":true},"status":301}}

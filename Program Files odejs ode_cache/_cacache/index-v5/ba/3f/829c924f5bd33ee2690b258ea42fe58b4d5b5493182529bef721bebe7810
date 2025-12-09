@@ -1,0 +1,2 @@
+
+d0cdf59e5d7ff05708231e079ce92adad2484273	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/graceful-fs","integrity":null,"time":1765263121982,"size":"262","metadata":{"time":1765263121982,"url":"http://registry.npmmirror.com/graceful-fs","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:55 GMT","location":"https://registry.npmmirror.com/graceful-fs"},"options":{"compress":true},"status":301}}

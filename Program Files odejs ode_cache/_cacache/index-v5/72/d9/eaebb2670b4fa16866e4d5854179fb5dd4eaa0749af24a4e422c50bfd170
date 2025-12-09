@@ -1,0 +1,2 @@
+
+695aba2bd5d8eeb2485edcd8035cd6d59b36a967	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@parcel%2fwatcher-linux-x64-glibc","integrity":null,"time":1765263114769,"size":"262","metadata":{"time":1765263114769,"url":"http://registry.npmmirror.com/@parcel%2fwatcher-linux-x64-glibc","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:48 GMT","location":"https://registry.npmmirror.com/@parcel%2fwatcher-linux-x64-glibc"},"options":{"compress":true},"status":301}}

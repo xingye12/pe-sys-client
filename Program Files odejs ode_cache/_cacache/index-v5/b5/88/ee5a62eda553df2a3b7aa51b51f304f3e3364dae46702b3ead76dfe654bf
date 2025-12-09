@@ -1,0 +1,2 @@
+
+97889c9740db4376ecc30c3c4a4a6474442ff7d5	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/alien-signals","integrity":null,"time":1765254968272,"size":"262","metadata":{"time":1765254968272,"url":"http://registry.npmmirror.com/alien-signals","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 04:36:02 GMT","location":"https://registry.npmmirror.com/alien-signals"},"options":{"compress":true},"status":301}}

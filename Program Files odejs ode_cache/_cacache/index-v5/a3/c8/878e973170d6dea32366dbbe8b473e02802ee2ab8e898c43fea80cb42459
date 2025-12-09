@@ -1,0 +1,2 @@
+
+846ecd497a307d23a107bbbbfe538b5d6c969bdb	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/ansis","integrity":null,"time":1765254964969,"size":"262","metadata":{"time":1765254964969,"url":"http://registry.npmmirror.com/ansis","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 04:35:58 GMT","location":"https://registry.npmmirror.com/ansis"},"options":{"compress":true},"status":301}}

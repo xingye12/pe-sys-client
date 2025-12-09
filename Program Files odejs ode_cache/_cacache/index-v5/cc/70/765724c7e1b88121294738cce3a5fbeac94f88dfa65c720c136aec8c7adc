@@ -1,0 +1,2 @@
+
+5947373c97faa4593aed9dde6445f010dbfcfbe8	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/he","integrity":null,"time":1765263125249,"size":"262","metadata":{"time":1765263125249,"url":"http://registry.npmmirror.com/he","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:58 GMT","location":"https://registry.npmmirror.com/he"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+0c3c937dc477eeacaf560f5bb16a88c101e486a8	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@sec-ant%2freadable-stream","integrity":null,"time":1765263121505,"size":"262","metadata":{"time":1765263121505,"url":"http://registry.npmmirror.com/@sec-ant%2freadable-stream","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:55 GMT","location":"https://registry.npmmirror.com/@sec-ant%2freadable-stream"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+199414c5ec83e3b6d7a3dfe0fd1060003ad8afa3	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/universalify","integrity":null,"time":1765263121985,"size":"262","metadata":{"time":1765263121985,"url":"http://registry.npmmirror.com/universalify","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:55 GMT","location":"https://registry.npmmirror.com/universalify"},"options":{"compress":true},"status":301}}

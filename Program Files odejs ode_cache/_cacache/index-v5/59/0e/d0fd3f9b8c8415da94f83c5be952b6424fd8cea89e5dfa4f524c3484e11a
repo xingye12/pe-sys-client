@@ -1,0 +1,2 @@
+
+4f5a065ddb53fd848e1fb5fc82e78d5853018492	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/vue-template-compiler","integrity":null,"time":1765263124357,"size":"262","metadata":{"time":1765263124356,"url":"http://registry.npmmirror.com/vue-template-compiler","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:57 GMT","location":"https://registry.npmmirror.com/vue-template-compiler"},"options":{"compress":true},"status":301}}

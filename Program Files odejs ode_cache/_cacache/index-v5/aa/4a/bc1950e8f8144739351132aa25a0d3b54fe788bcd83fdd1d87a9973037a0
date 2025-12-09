@@ -1,0 +1,2 @@
+
+675ae7123be1a0fbc3ec3b1eb945bd2e2c0d8b48	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/pretty-ms","integrity":null,"time":1765263120733,"size":"262","metadata":{"time":1765263120733,"url":"http://registry.npmmirror.com/pretty-ms","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:54 GMT","location":"https://registry.npmmirror.com/pretty-ms"},"options":{"compress":true},"status":301}}

@@ -1,0 +1,2 @@
+
+fb091974b5efd560d2f085b8d91ae6ea0adee686	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/is-unicode-supported","integrity":null,"time":1765263121668,"size":"262","metadata":{"time":1765263121668,"url":"http://registry.npmmirror.com/is-unicode-supported","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:55 GMT","location":"https://registry.npmmirror.com/is-unicode-supported"},"options":{"compress":true},"status":301}}

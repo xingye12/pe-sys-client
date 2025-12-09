@@ -1,0 +1,2 @@
+
+cd846302ac3e0abf8a57aae4964050a1ba8201fd	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/braces","integrity":null,"time":1765263115319,"size":"262","metadata":{"time":1765263115319,"url":"http://registry.npmmirror.com/braces","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:48 GMT","location":"https://registry.npmmirror.com/braces"},"options":{"compress":true},"status":301}}

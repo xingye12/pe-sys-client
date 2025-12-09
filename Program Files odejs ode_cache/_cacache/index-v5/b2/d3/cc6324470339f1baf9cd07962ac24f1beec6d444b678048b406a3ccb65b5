@@ -1,0 +1,2 @@
+
+57cfdee1fde512fc6663539091f3b98bcd4ad039	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@parcel%2fwatcher-freebsd-x64","integrity":null,"time":1765263114929,"size":"262","metadata":{"time":1765263114928,"url":"http://registry.npmmirror.com/@parcel%2fwatcher-freebsd-x64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:48 GMT","location":"https://registry.npmmirror.com/@parcel%2fwatcher-freebsd-x64"},"options":{"compress":true},"status":301}}

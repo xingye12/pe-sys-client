@@ -1,0 +1,2 @@
+
+445c5db5fbc1b5545c81e8f04e18141ac3451d33	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/is-number","integrity":null,"time":1765263116437,"size":"262","metadata":{"time":1765263116437,"url":"http://registry.npmmirror.com/is-number","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:49 GMT","location":"https://registry.npmmirror.com/is-number"},"options":{"compress":true},"status":301}}

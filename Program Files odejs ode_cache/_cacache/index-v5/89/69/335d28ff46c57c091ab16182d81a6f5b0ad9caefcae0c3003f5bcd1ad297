@@ -1,0 +1,2 @@
+
+24b69b9cfb38facb7b707ac623b54134d6eb095a	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/node-addon-api","integrity":null,"time":1765263114768,"size":"262","metadata":{"time":1765263114768,"url":"http://registry.npmmirror.com/node-addon-api","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:48 GMT","location":"https://registry.npmmirror.com/node-addon-api"},"options":{"compress":true},"status":301}}

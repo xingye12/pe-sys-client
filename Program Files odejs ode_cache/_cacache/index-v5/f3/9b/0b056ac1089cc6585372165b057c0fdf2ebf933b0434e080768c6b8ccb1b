@@ -1,0 +1,2 @@
+
+bed022bd00817538828c3977a61bbfe339dce149	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/vscode-uri","integrity":null,"time":1765254968288,"size":"262","metadata":{"time":1765254968288,"url":"http://registry.npmmirror.com/vscode-uri","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 04:36:02 GMT","location":"https://registry.npmmirror.com/vscode-uri"},"options":{"compress":true},"status":301}}

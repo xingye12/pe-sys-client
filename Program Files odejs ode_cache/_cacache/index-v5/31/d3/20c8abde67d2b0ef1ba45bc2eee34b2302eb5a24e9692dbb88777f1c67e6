@@ -1,0 +1,2 @@
+
+5f9de1e15bf68daa518582fd47a06696e2a1bb2e	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/@parcel%2fwatcher-win32-arm64","integrity":null,"time":1765263114779,"size":"262","metadata":{"time":1765263114779,"url":"http://registry.npmmirror.com/@parcel%2fwatcher-win32-arm64","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:48 GMT","location":"https://registry.npmmirror.com/@parcel%2fwatcher-win32-arm64"},"options":{"compress":true},"status":301}}

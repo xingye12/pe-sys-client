@@ -1,0 +1,2 @@
+
+115d4d6091889e296ea502f2b55292e56945ca86	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/figures","integrity":null,"time":1765263120731,"size":"262","metadata":{"time":1765263120731,"url":"http://registry.npmmirror.com/figures","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:54 GMT","location":"https://registry.npmmirror.com/figures"},"options":{"compress":true},"status":301}}

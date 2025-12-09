@@ -1,0 +1,2 @@
+
+ac4f480dc89499d0e51798d9743ead43010a9b24	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/micromatch","integrity":null,"time":1765263114768,"size":"262","metadata":{"time":1765263114768,"url":"http://registry.npmmirror.com/micromatch","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:48 GMT","location":"https://registry.npmmirror.com/micromatch"},"options":{"compress":true},"status":301}}

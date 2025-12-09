@@ -1,0 +1,2 @@
+
+7d8da82d987b801d5135afd3e1857145524f9583	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/de-indent","integrity":null,"time":1765263125249,"size":"262","metadata":{"time":1765263125249,"url":"http://registry.npmmirror.com/de-indent","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:58 GMT","location":"https://registry.npmmirror.com/de-indent"},"options":{"compress":true},"status":301}}

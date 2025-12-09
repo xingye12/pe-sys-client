@@ -1,0 +1,2 @@
+
+597b33a1d1ea543920a8ddb3a11384960e7bfd70	{"key":"make-fetch-happen:request-cache:http://registry.npmmirror.com/immutable","integrity":null,"time":1765263087068,"size":"262","metadata":{"time":1765263087068,"url":"http://registry.npmmirror.com/immutable","reqHeaders":{"accept":"application/json"},"resHeaders":{"content-type":"text/html","date":"Tue, 09 Dec 2025 06:51:20 GMT","location":"https://registry.npmmirror.com/immutable"},"options":{"compress":true},"status":301}}
