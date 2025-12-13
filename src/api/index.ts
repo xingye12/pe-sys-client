@@ -45,6 +45,11 @@ export const adminApi = {
   publishTask: (data: any) => request.post('/admin/tasks', data),
   getTaskList: (params?: any) => request.get('/admin/tasks', { params }),
   getTaskDetail: (taskId: string) => request.get(`/admin/tasks/${taskId}`),
+  deleteTask: (taskId: string) => request.delete(`/admin/tasks/${taskId}`),
+
+  // 考试状态管理
+  updateTaskStatus: (taskId: string, status: string) => request.put(`/admin/tasks/${taskId}/status`, { status }),
+  updateAllStatuses: () => request.post('/admin/tasks/update-all-statuses'),
   
   // 视频管理
   uploadVideos: (formData: FormData) => request.post('/admin/videos/upload', formData),

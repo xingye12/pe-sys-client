@@ -32,6 +32,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/admin/StudentManagement.vue')
       },
       {
+        path: 'exam-manage',
+        name: 'ExamManage',
+        component: () => import('@/views/admin/ExamManagement.vue')
+      },
+      {
         path: 'video-manage',
         name: 'VideoManage',
         component: () => import('@/views/admin/VideoManage.vue')

@@ -39,7 +39,7 @@
             <el-table-column prop="studentId" label="学号" />
             <el-table-column prop="classId" label="班级" />
             <el-table-column prop="teacherName" label="班主任" />
-            <el-table-column label="性别">
+              <el-table-column label="性别">
               <template #default="{ row }">
                 <span>{{ row.studentId % 2 === 0 ? '女' : '男' }}</span>
               </template>
@@ -60,27 +60,33 @@
 
     <!-- 发布任务对话框 -->
     <el-dialog v-model="taskVisible" title="发布考试任务" width="600px">
-      <el-form :model="taskForm" label-width="100px">
-        <el-form-item label="任务名称">
-          <el-input v-model="taskForm.taskName" />
+      <el-form :model="taskForm" :rules="taskRules" ref="taskFormRef" label-width="100px">
+        <el-form-item label="任务名称" prop="taskName">
+          <el-input v-model="taskForm.taskName" placeholder="请输入任务名称，如：初一体能测试" />
         </el-form-item>
-        <el-form-item label="考试项目">
-          <el-select v-model="taskForm.projects" multiple placeholder="请选择">
-            <el-option label="50米跑" value="50m" />
-            <el-option label="800米跑" value="800m" />
-            <el-option label="立定跳远" value="jump" />
-            <el-option label="仰卧起坐" value="situp" />
-            <el-option label="跳绳" value="rope" />
+        <el-form-item label="考试项目" prop="projects">
+          <el-select v-model="taskForm.projects" multiple placeholder="请选择考试项目" style="width: 100%">
+            <el-option label="50米跑" value="50米跑" />
+            <el-option label="800米跑" value="800米跑" />
+            <el-option label="立定跳远" value="立定跳远" />
+            <el-option label="仰卧起坐" value="仰卧起坐" />
+            <el-option label="跳绳" value="跳绳" />
           </el-select>
         </el-form-item>
-        <el-form-item label="开始时间">
-          <el-date-picker v-model="taskForm.startTime" type="datetime" />
+        <el-form-item label="考试时间" prop="examTime">
+          <el-date-picker
+            v-model="taskForm.examTime"
+            type="datetimerange"
+            range-separator="至"
+            start-placeholder="开始时间"
+            end-placeholder="结束时间"
+            format="YYYY-MM-DD HH:mm"
+            value-format="YYYY-MM-DD HH:mm"
+            style="width: 100%"
+          />
         </el-form-item>
-        <el-form-item label="结束时间">
-          <el-date-picker v-model="taskForm.endTime" type="datetime" />
-        </el-form-item>
-        <el-form-item label="任务说明">
-          <el-input v-model="taskForm.description" type="textarea" :rows="3" />
+        <el-form-item label="任务说明" prop="description">
+          <el-input v-model="taskForm.description" type="textarea" :rows="3" placeholder="请输入任务说明（选填）" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -93,7 +99,7 @@
     <el-dialog v-model="classDialogVisible" title="添加班级" width="500px">
       <el-form :model="classForm" :rules="classRules" ref="classFormRef" label-width="80px">
         <el-form-item label="班级名称" prop="className">
-          <el-input v-model="classForm.className" placeholder="请输入班级名称，如：初一1班" />
+          <el-input v-model="classForm.className" placeholder="请输入班级名称，如：1班" />
         </el-form-item>
         <el-form-item label="年级" prop="grade">
           <el-select v-model="classForm.grade" placeholder="请选择年级" style="width: 100%">
@@ -142,10 +148,21 @@ const submitting = ref(false)
 const taskForm = ref({
   taskName: '',
   projects: [],
-  startTime: '',
-  endTime: '',
+  examTime: '',
   description: ''
 })
+
+const taskRules = {
+  taskName: [
+    { required: true, message: '请输入任务名称', trigger: 'blur' }
+  ],
+  projects: [
+    { required: true, type: 'array', min: 1, message: '请至少选择一个考试项目', trigger: 'change' }
+  ],
+  examTime: [
+    { required: true, message: '请选择考试时间', trigger: 'change' }
+  ]
+}
 
 const classForm = ref({
   className: '',
@@ -166,6 +183,7 @@ const classRules = {
 }
 
 const classFormRef = ref()
+const taskFormRef = ref()
 
 const loadClassList = async () => {
   loading.value = true
@@ -193,9 +211,9 @@ const handleAddClass = () => {
   loadTeacherList()
 }
 
+
 const loadTeacherList = async () => {
   try {
-    // 直接从teacher表获取所有教师
     const res = await adminApi.getTeacherList()
     teacherList.value = res.data || []
   } catch (error) {
@@ -270,16 +288,51 @@ const handleDeleteClass = async (row: any) => {
 }
 
 const handleSubmitTask = async () => {
+  if (!taskFormRef.value) return
+
   try {
-    await adminApi.publishTask({
-      classId: currentClass.value.classId,
-      ...taskForm.value
-    })
+    // 表单验证
+    await taskFormRef.value.validate()
+
+    // 转换数据格式以匹配后端DTO
+    const taskData = {
+      taskName: taskForm.value.taskName,
+      description: taskForm.value.description || '',
+      classIds: [currentClass.value.classId], // 转换为数组格式
+      examProjects: taskForm.value.projects, // 重命名字段
+      startTime: taskForm.value.examTime ? taskForm.value.examTime[0] : '',
+      endTime: taskForm.value.examTime ? taskForm.value.examTime[1] : ''
+    }
+
+    console.log('准备发布的任务数据:', taskData)
+    console.log('当前班级信息:', currentClass.value)
+
+    const result = await adminApi.publishTask(taskData)
+    console.log('API响应结果:', result)
     ElMessage.success('任务发布成功')
     taskVisible.value = false
+
+    // 重置表单
+    taskForm.value = {
+      taskName: '',
+      projects: [],
+      examTime: '',
+      description: ''
+    }
   } catch (error) {
-    ElMessage.error('任务发布失败')
+    console.error('任务发布失败:', error)
+    ElMessage.error('任务发布失败: ' + (error.response?.data?.message || error.message))
   }
+}
+
+// 格式化日期为 yyyy-MM-dd
+const formatDate = (date) => {
+  if (!date) return ''
+  const d = new Date(date)
+  const year = d.getFullYear()
+  const month = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
 }
 
 

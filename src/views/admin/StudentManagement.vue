@@ -13,7 +13,7 @@
         <el-form-item label="班级">
           <el-select v-model="queryForm.classId" placeholder="请选择班级" clearable>
             <el-option label="全部" value="" />
-            <el-option v-for="item in classList" :key="item.classId" :label="`${item.classId}班`" :value="item.classId" />
+            <el-option v-for="item in classList" :key="item.classId" :label="item.className" :value="item.classId" />
           </el-select>
         </el-form-item>
         <el-form-item label="姓名">
@@ -32,7 +32,7 @@
         <el-table-column prop="name" label="姓名" width="120" />
         <el-table-column prop="className" label="班级" width="120">
           <template #default="{ row }">
-            {{ row.classId }}班
+            {{ row.className || `${row.classId}班` }}
           </template>
         </el-table-column>
         <el-table-column prop="teacherName" label="班主任" width="120" />
@@ -69,7 +69,7 @@
         </el-form-item>
         <el-form-item label="班级" prop="classId">
           <el-select v-model="studentForm.classId" placeholder="请选择班级" style="width: 100%">
-            <el-option v-for="item in classList" :key="item.classId" :label="`${item.classId}班`" :value="item.classId" />
+            <el-option v-for="item in classList" :key="item.classId" :label="item.className" :value="item.classId" />
           </el-select>
         </el-form-item>
         <el-form-item label="密码" prop="password">
@@ -109,7 +109,7 @@
       <el-form :model="batchForm" label-width="80px">
         <el-form-item label="班级">
           <el-select v-model="batchForm.classId" placeholder="请选择班级" style="width: 100%">
-            <el-option v-for="item in classList" :key="item.classId" :label="`${item.classId}班`" :value="item.classId" />
+            <el-option v-for="item in classList" :key="item.classId" :label="item.className" :value="item.classId" />
           </el-select>
         </el-form-item>
         <el-form-item label="学生名单">

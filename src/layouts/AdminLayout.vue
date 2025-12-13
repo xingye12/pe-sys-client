@@ -25,6 +25,10 @@
           <el-icon><User /></el-icon>
           <span>学生管理</span>
         </el-menu-item>
+        <el-menu-item index="/admin/exam-manage">
+          <el-icon><Document /></el-icon>
+          <span>任务管理</span>
+        </el-menu-item>
         <el-menu-item index="/admin/video-manage">
           <el-icon><VideoCamera /></el-icon>
           <span>视频管理</span>
