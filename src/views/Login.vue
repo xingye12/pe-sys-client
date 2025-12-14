@@ -54,9 +54,7 @@
         </el-form-item>
       </el-form>
 
-      <div class="login-footer">
-        <p>演示账号：admin/teacher/student | 密码：123456</p>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -67,6 +65,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { Trophy } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { authApi } from '@/api'
 
 const router = useRouter()
 const formRef = ref<FormInstance>()
@@ -87,18 +86,24 @@ const rules: FormRules = {
 const handleLogin = async () => {
   if (!formRef.value) return
 
-  await formRef.value.validate((valid) => {
+  await formRef.value.validate(async (valid) => {
     if (valid) {
       loading.value = true
-      
-      // 模拟登录
-      setTimeout(() => {
-        loading.value = false
-        localStorage.setItem('token', 'demo-token')
+
+      try {
+        // 调用登录API
+        const response = await authApi.login({
+          username: loginForm.username,
+          password: loginForm.password,
+          userType: loginForm.role // 注意：这里需要转换为后端期望的值
+        })
+
+        // 假设后端返回token和用户信息
+        
         localStorage.setItem('role', loginForm.role)
-        
+
         ElMessage.success('登录成功')
-        
+        console.log(loginForm.role)
         // 根据角色跳转到不同页面
         const routeMap: Record<string, string> = {
           admin: '/admin/dashboard',
@@ -106,7 +111,12 @@ const handleLogin = async () => {
           student: '/student/scores'
         }
         router.push(routeMap[loginForm.role])
-      }, 1000)
+
+      } catch (error: any) {
+        ElMessage.error(error.response?.data?.message || '登录失败，请检查用户名和密码')
+      } finally {
+        loading.value = false
+      }
     }
   })
 }

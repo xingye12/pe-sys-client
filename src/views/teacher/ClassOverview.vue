@@ -143,7 +143,7 @@ const initCompletionChart = () => {
 onMounted(async () => {
   // 加载数据
   try {
-    const res = await teacherApi.getClassOverview()
+    const res = await teacherApi.getClassOverview(1)
     // 更新 kpiData
   } catch (error) {
     console.error('加载数据失败', error)

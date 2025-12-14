@@ -26,6 +26,12 @@ request.interceptors.response.use(
   }
 )
 
+// 登录接口
+export const authApi = {
+  login: (data: { username: string; password: string; userType: string }) => request.post('/login', data),
+  logout: () => request.post('/logout')
+}
+
 // 管理员接口
 export const adminApi = {
   // 班级管理
@@ -71,13 +77,15 @@ export const adminApi = {
 // 教师接口
 export const teacherApi = {
   // 班级总览
-  getClassOverview: () => request.get('/teacher/class/overview'),
+  getClassOverview: (teacherId:number) => request.get(`/teacher/class/overview?teacherId=${teacherId}`),
   getClassStatistics: () => request.get('/teacher/class/statistics'),
   
   // 学生成绩管理
   getStudentList: (params?: any) => request.get('/teacher/students', { params }),
   getStudentDetail: (studentId: string) => request.get(`/teacher/students/${studentId}`),
   getStudentScores: (studentId: string) => request.get(`/teacher/students/${studentId}/scores`),
+  getClassStudents: (classId: number) => request.get(`/teacher/class_students`, { params: { classId } }),
+  getClassExams: (classId: number) => request.get(`/teacher/class_exams?classId=${classId}`),
   
   // 导出功能
   exportClassData: () => request.get('/teacher/export/class', { responseType: 'blob' }),

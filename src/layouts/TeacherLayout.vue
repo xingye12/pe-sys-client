@@ -21,6 +21,10 @@
           <el-icon><User /></el-icon>
           <span>学生管理</span>
         </el-menu-item>
+        <el-menu-item index="/teacher/exams">
+          <el-icon><Document /></el-icon>
+          <span>考试列表</span>
+        </el-menu-item>
       </el-menu>
     </el-aside>
 
@@ -60,7 +64,7 @@
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
-import { Reading, DataLine, User, ArrowDown } from '@element-plus/icons-vue'
+import { Reading, DataLine, User, ArrowDown, Document } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -73,7 +77,8 @@ const activeMenu = computed(() => route.path)
 const currentPageTitle = computed(() => {
   const titleMap: Record<string, string> = {
     '/teacher/overview': '班级总览',
-    '/teacher/students': '学生管理'
+    '/teacher/students': '学生管理',
+    '/teacher/exams': '考试列表'
   }
   return titleMap[route.path] || '首页'
 })

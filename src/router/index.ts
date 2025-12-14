@@ -57,6 +57,17 @@ const routes: RouteRecordRaw[] = [
         path: 'students',
         name: 'TeacherStudentManage',
         component: () => import('@/views/teacher/StudentManage.vue')
+      },
+      // 示例路由配置
+      {
+        path: '/teacher/exams',
+        name: 'ExamList',
+        component: () => import('@/views/teacher/ExamListview.vue')
+      },
+      {
+        path: '/teacher/exam/:id',
+        name: 'ExamDetail',
+        component: () => import('@/views/teacher/ExamDetail.vue')
       }
     ]
   },

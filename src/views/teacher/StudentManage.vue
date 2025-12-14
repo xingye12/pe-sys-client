@@ -13,6 +13,12 @@
 
       <!-- 筛选条件 -->
       <el-form :inline="true" :model="queryForm">
+        <el-form-item label="班级">
+          <el-select v-model="queryForm.classId" placeholder="请选择班级" clearable @change="handleClassChange">
+            <el-option label="全部班级" :value="0" />
+            <el-option v-for="cls in classList" :key="cls.classId" :label="cls.className" :value="cls.classId" />
+          </el-select>
+        </el-form-item>
         <el-form-item label="姓名">
           <el-input v-model="queryForm.studentName" placeholder="请输入学生姓名" clearable />
         </el-form-item>
@@ -49,7 +55,7 @@
             <el-tag :type="getScoreTagType(row.avgScore)">{{ row.avgScore }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="rank" label="班级排名" width="100" sortable />
+        <el-table-column prop="class_rank" label="班级排名" width="100" sortable />
         <el-table-column prop="examCount" label="考试次数" width="100" />
         <el-table-column prop="passRate" label="及格率" width="100">
           <template #default="{ row }">{{ row.passRate }}%</template>
@@ -159,10 +165,11 @@
 import { ref, onMounted, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as echarts from 'echarts'
-import { teacherApi } from '@/api'
+import { teacherApi, type StudentScoreVO } from '@/api/teacher'
 
 const loading = ref(false)
-const studentList = ref([])
+const studentList = ref<StudentScoreVO[]>([])
+const classList = ref([])
 const detailVisible = ref(false)
 const activeTab = ref('basic')
 const studentDetail = ref<any>({})
@@ -171,6 +178,7 @@ const studentProjectChart = ref<HTMLElement>()
 const issueStatChart = ref<HTMLElement>()
 
 const queryForm = ref({
+  classId: 1,
   studentName: '',
   scoreRange: '',
   sortBy: 'score_desc'
@@ -189,10 +197,62 @@ const getScoreTagType = (score: number) => {
   return 'danger'
 }
 
+const loadClassList = async () => {
+  try {
+    // 获取当前教师的班级列表，假设教师ID为1
+    const teacherId = 1
+    const res = await teacherApi.getTeacherClasses(teacherId)
+  
+    if (res.code === 1 && Array.isArray(res.data)) {
+
+      classList.value = res.data
+    }
+  
+  } catch (error) {
+    console.error('加载班级列表失败', error)
+  }
+}
+
+const handleClassChange = () => {
+  pagination.value.page = 1
+  if (queryForm.value.classId) {
+    loadClassStudents()
+  } else {
+    loadStudentList()
+  }
+}
+
+const loadClassStudents = async () => {
+  loading.value = true
+  try {
+    const res = await teacherApi.getClassStudents(queryForm.value.classId)
+    if (res.data && Array.isArray(res.data)) {
+      studentList.value = res.data.map((student: any, index: number) => ({
+        studentId: student.studentId,
+        studentName: student.name,
+        studentNo: student.username,
+        classId: student.classId,
+        // 临时填充一些默认值，实际数据需要从后端获取
+        gender: '男',
+        avgScore: 0,
+        rank: index + 1,
+        examCount: 0,
+        passRate: 0,
+        progress: 0
+      }))
+      pagination.value.total = res.data.length
+    }
+  } catch (error) {
+    ElMessage.error('加载班级学生失败'+queryForm.value.classId)
+  } finally {
+    loading.value = false
+  }
+}
+
 const loadStudentList = async () => {
   loading.value = true
   try {
-    const res = await teacherApi.getStudentList({
+    const res = await teacherApi.getStudentScores({
       ...queryForm.value,
       page: pagination.value.page,
       size: pagination.value.size
@@ -213,6 +273,7 @@ const handleQuery = () => {
 
 const handleReset = () => {
   queryForm.value = {
+    classId: 1,
     studentName: '',
     scoreRange: '',
     sortBy: 'score_desc'
@@ -224,12 +285,12 @@ const handleRefresh = () => {
   loadStudentList()
 }
 
-const handleViewDetail = async (row: any) => {
+const handleViewDetail = async (row: StudentScoreVO) => {
   try {
     const res = await teacherApi.getStudentDetail(row.studentId)
     studentDetail.value = res.data || {}
     detailVisible.value = true
-    
+
     await nextTick()
     initStudentCharts()
   } catch (error) {
@@ -258,7 +319,7 @@ const handleExportClass = async () => {
   }
 }
 
-const handleExportStudent = async (row: any) => {
+const handleExportStudent = async (row: StudentScoreVO) => {
   try {
     const res = await teacherApi.exportStudentData(row.studentId)
     const blob = new Blob([res.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' })
@@ -334,6 +395,7 @@ const initStudentCharts = () => {
 }
 
 onMounted(() => {
+  loadClassList()
   loadStudentList()
 })
 </script>

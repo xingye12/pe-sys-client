@@ -68,6 +68,11 @@ import { ref, onMounted } from 'vue'
 import { User, TrendCharts, Check, Star, CaretTop, CaretBottom } from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
 import { ElMessage } from 'element-plus'
+import { teacherApi, type ClassOverviewVO, type StudentScoreVO } from '@/api/teacher'
+
+const loading = ref(false)
+const classOverviewList = ref<ClassOverviewVO[]>([])
+const studentList = ref<StudentScoreVO[]>([])
 
 const keyMetrics = ref([
   { label: '班级平均分', value: '85.6', trend: 2.3, color: '#409EFF', icon: TrendCharts },
@@ -76,21 +81,51 @@ const keyMetrics = ref([
   { label: '参考率', value: '98%', trend: 0.5, color: '#F56C6C', icon: User }
 ])
 
-const studentList = ref([
-  { id: 1, name: '张三', score: 92 },
-  { id: 2, name: '李四', score: 88 },
-  { id: 3, name: '王五', score: 85 },
-  { id: 4, name: '赵六', score: 90 },
-  { id: 5, name: '孙七', score: 87 }
-])
-
 const distributionChart = ref<HTMLElement>()
 const trendChart = ref<HTMLElement>()
+
+const loadClassOverview = async () => {
+  try {
+    loading.value = true
+    // 假设当前教师ID为1，实际应该从用户信息中获取
+    const teacherId = 1
+    const response = await teacherApi.getTeacherClassOverview(teacherId)
+    if (response.code === 200) {
+      classOverviewList.value = response.data || []
+      // 更新指标数据
+      if (classOverviewList.value.length > 0) {
+        const overview = classOverviewList.value[0]
+        keyMetrics.value[0].value = overview.avgScore.toFixed(1)
+        keyMetrics.value[1].value = overview.passRate.toFixed(0) + '%'
+        keyMetrics.value[2].value = overview.excellentRate.toFixed(0) + '%'
+        keyMetrics.value[3].value = '98%' // 参考率暂时使用固定值
+      }
+    }
+  } catch (error) {
+    ElMessage.error('获取班级概况失败')
+  } finally {
+    loading.value = false
+  }
+}
+
+const loadStudentList = async () => {
+  try {
+    const response = await teacherApi.getStudentScores({
+      page: 1,
+      size: 10
+    })
+    if (response.code === 200) {
+      studentList.value = response.data.list || []
+    }
+  } catch (error) {
+    ElMessage.error('获取学生列表失败')
+  }
+}
 
 const initDistributionChart = () => {
   if (!distributionChart.value) return
   const chart = echarts.init(distributionChart.value)
-  
+
   chart.setOption({
     tooltip: {},
     legend: { data: ['人数'] },
@@ -113,7 +148,7 @@ const initDistributionChart = () => {
 const initTrendChart = () => {
   if (!trendChart.value) return
   const chart = echarts.init(trendChart.value)
-  
+
   chart.setOption({
     tooltip: { trigger: 'axis' },
     legend: { data: ['平均分', '及格率', '优秀率'] },
@@ -132,12 +167,18 @@ const viewStudent = (row: any) => {
   // TODO: 跳转到学生详情页
 }
 
-const exportData = () => {
-  // TODO: 调用导出Excel接口
-  ElMessage.success('导出成功')
+const exportData = async () => {
+  try {
+    // TODO: 调用导出Excel接口
+    ElMessage.success('导出成功')
+  } catch (error) {
+    ElMessage.error('导出失败')
+  }
 }
 
 onMounted(() => {
+  loadClassOverview()
+  loadStudentList()
   initDistributionChart()
   initTrendChart()
 })
